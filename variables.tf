@@ -34,5 +34,6 @@ variable "volumes" {
   description = "Volumes to mount"
   default = {
     devbox-workspace = "/home/coder"
+    devbox-nix = "/nix"
   }
 }
