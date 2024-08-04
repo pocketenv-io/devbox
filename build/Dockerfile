@@ -64,8 +64,8 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh | bash
 
 ENV BASH_ENV=/home/${USER}/.bashrc
 
-COPY entry.sh entry.sh
+COPY entry.sh /usr/local/bin/entry.sh
 
-RUN sudo chmod a+x entry.sh
+RUN sudo chmod a+x /usr/local/bin/entry.sh
 
-ENTRYPOINT [ "./entry.sh" ]
+ENTRYPOINT [ "entry.sh" ]
