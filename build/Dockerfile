@@ -14,7 +14,8 @@ RUN rm -f packages.microsoft.gpg
 RUN  apt-get install -y apt-transport-https \
   && apt-get update \
   && apt-get install -y \
-  code sudo direnv unzip
+  --no-install-recommends \
+  code sudo direnv unzip ca-certificates iptables openssl pigz xz-utils
 
 ARG USER=coder
 ARG USER_ID=30033
@@ -26,6 +27,11 @@ RUN addgroup --gid $GROUP_ID ${USER} \
   && chmod 0440 /etc/sudoers.d/${USER}
 
 RUN mkdir -p /home/${USER} && chown -R ${USER}:${USER} /home/${USER}
+
+ENV DOCKER_TLS_CERTDIR=/certs
+RUN mkdir /certs /certs/client && chmod 1777 /certs /certs/client
+COPY --from=docker:27-dind /usr/local/bin/ /usr/local/bin/
+VOLUME /var/lib/docker
 
 USER ${USER}
 
@@ -58,4 +64,8 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://setup.atuin.sh | bash
 
 ENV BASH_ENV=/home/${USER}/.bashrc
 
-ENTRYPOINT [ "code", "-v", "tunnel" ]
+COPY entry.sh entry.sh
+
+RUN chmod a+x entry.sh
+
+ENTRYPOINT [ "./entry.sh" ]
