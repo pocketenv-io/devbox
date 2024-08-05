@@ -35,5 +35,6 @@ variable "volumes" {
   default = {
     devbox-workspace = "/home/coder"
     devbox-nix = "/nix"
+    devbox-docker-volumes = "/var/lib/docker"
   }
 }
