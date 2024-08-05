@@ -14,7 +14,8 @@ pocketenv init -t devbox
 
 - Devbox
 - Nix
-- Ohmyposh
+- Oh-my-posh
 - Atuin
 - Direnv
 - Git
+- Docker
