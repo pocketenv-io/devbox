@@ -1,5 +1,7 @@
 # Devbox Workspace
 
+[![ci](https://github.com/pocketenv-io/devbox/actions/workflows/ci.yml/badge.svg)](https://github.com/pocketenv-io/devbox/actions/workflows/ci.yml)
+
 This is a template workspace with devbox. It is a starting point for creating a new workspace.
 
 ## 🚀 Quick start
